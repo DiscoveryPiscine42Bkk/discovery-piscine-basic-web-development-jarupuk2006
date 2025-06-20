@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #ffe6e6, #ffb6c1, #ff69b4);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #4a4a4a;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .logo-container {
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #ff69b4;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        
+        .member-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .info-box {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .info-box:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 logo-container">
+                    <img src="https://cdn.discordapp.com/attachments/1384394250401222677/1385481148053983335/-600x400_1.png?ex=6856395e&is=6854e7de&hm=6f0213759bdd7deef16be9bafbcb27e2cf7e9c8e3209877367274ecbc9e76777&" alt="Logo" class="h-10 w-10 rounded-full">
+                </div>
+                
+                <!-- Menu Items -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-item px-3 py-2 text-gray-700 hover:text-pink-600" onclick="showPage('home')">หน้าหลัก</a>
+                    <a href="#" class="nav-item px-3 py-2 text-gray-700 hover:text-pink-600" onclick="showPage('profile1')">ประวัติของฉัน</a>
+                    <a href="#" class="nav-item px-3 py-2 text-gray-700 hover:text-pink-600" onclick="showPage('profile2')">เพื่อนร่วมทีม</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="hidden mobile-menu bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-pink-600" onclick="showPage('home'); toggleMobileMenu()">หน้าหลัก</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-pink-600" onclick="showPage('profile1'); toggleMobileMenu()">ประวัติของฉัน</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-pink-600" onclick="showPage('profile2'); toggleMobileMenu()">เพื่อนร่วมทีม</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</h1>
+                <h2 class="text-2xl md:text-3xl text-pink-600">สาขานวัตกรรมและเทคโนโลยีการออกแบบ</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Member 1 Card -->
+                <div class="member-card bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="showPage('profile1')">
+                    <div class="h-48 bg-gradient-to-r from-pink-300 to-pink-400 flex items-center justify-center">
+                        <i class="fas fa-user text-white text36xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">นางสาวจารุพักตร์ กาซอ</h3>
+                        <p class="text-gray-600">นักศึกษาสาขานวัตกรรมและเทคโนโลยีการออกแบบ</p>
+                        <div class="mt-4 flex items-center text-pink-600">
+                            <span>ดูโปรไฟล์</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 2 Card -->
+                <div class="member-card bg-white rounded-xl overflow-hidden shadow-md cursor-pointer" onclick="showPage('profile2')">
+                    <div class="h-48 bg-gradient-to-r from-pink-300 to-pink-400 flex items-center justify-center">
+                        <i class="fas fa-user-friends text-white text-3xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">นางสาวโสภาวรรณ ปฐมสกุลสุนทร</h3>
+                        <p class="text-gray-600">นักศึกษาสาขานวัตกรรมและเทคโนโลยีการออกแบบ</p>
+                        <div class="mt-4 flex items-center text-pink-600">
+                            <span>ดูโปรไฟล์</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Faculty -->
+                <div class="info-box p-6 col-span-1 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-university text-pink-600 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">เกี่ยวกับคณะ</h3>
+                    </div>
+                    <p class="text-gray-700">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี มุ่งผลิตครุศาสตรบัณฑิตที่มีความรู้ความสามารถในศาสตร์เฉพาะทางด้านเทคโนโลยีและนวัตกรรมเพื่อการออกแบบ สามารถบูรณาการความรู้ในการจัดการเรียนรู้อย่างมีประสิทธิภาพ</p>
+                    <div class="mt-4">
+                        <div class="flex items-center text-pink-600">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            <span>เปิดสอนระดับปริญญาตรีและบัณฑิตศึกษา</span>
+                        </div>
+                        <div class="flex items-center text-pink-600 mt-2">
+                            <i class="fas fa-laptop-code mr-2"></i>
+                            <span>มีห้องปฏิบัติการที่ทันสมัย</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page 1 -->
+    <div id="profile1" class="page">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <!-- Back Button -->
+            <button onclick="showPage('home')" class="mb-6 flex items-center text-pink-600 hover:text-pink-700">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span>กลับหน้าหลัก</span>
+            </button>
+            
+            <!-- Section 1 -->
+            <div class="section bg-white rounded-xl overflow-hidden shadow-md mb-8">
+                <div class="p-6">
+                    <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</h1>
+                    <h2 class="text-2xl text-center text-pink-600 mb-6">สาขานวัตกรรมและเทคโนโลยีการออกแบบ</h2>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-full md:w-1/2">
+                            <p class="text-gray-700 mb-4">สาขาวิชานี้มุ่งเน้นการพัฒนาผู้เรียนให้มีความรู้ความสามารถด้านเทคโนโลยีการออกแบบ สามารถสร้างสรรค์ผลงานนวัตกรรมที่ตอบสนองความต้องการของสังคมและอุตสาหกรรม</p>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>หลักสูตรที่ทันสมัย</li>
+                                <li>การเรียนรู้ผ่านการปฏิบัติจริง</li>
+                                <li>อาจารย์ผู้ทรงคุณวุฒิ</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <img src="https://cdn.discordapp.com/attachments/1384394250401222677/1385480912350871555/-600x400_1.png?ex=68563926&is=6854e7a6&hm=10fb8c27952b186fafd26fcbc80c751e68a14bd57ef30826a80e13807af576d2&" alt="Faculty Image" class="rounded-lg shadow-md">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2 -->
+            <div class="section bg-white rounded-xl overflow-hidden shadow-md mb-8">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">ข้อมูลเกี่ยวกับสาขาที่ฉันเรียน</h2>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-full md:w-1/3">
+                            <div class="bg-gradient-to-br from-pink-200 to-pink-300 rounded-full p-2">
+                                <img src="https://cdn.discordapp.com/attachments/1385169743421636629/1385485197637845123/IMG_9735.jpg?ex=68563d24&is=6854eba4&hm=29fe58fe85aadcdf4622cf2e818e655280a5a7506c500f378aa3767dcc700e55&" alt="Faculty Image" class="rounded-lg shadow-md" alt="My Photo" class="rounded-full w-full h-auto">
+                            </div>
+                        </div>
+                        
+                        <div class="w-full md:w-2/3">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">ประวัติส่วนตัว</h3>
+                            <p class="text-gray-700 mb-4">สวัสดีค่ะหนูเป็นนักศึกษาคณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี สาขานวัตกรรมและเทคโนโลยีการออกแบบ มีความสนใจในด้านการออกแบบ UX/UI, การพัฒนาเว็บไซต์ และเทคโนโลยีการศึกษาที่ทันสมัย</p>
+                            
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">รายวิชาที่เรียน</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>การออกแบบเว็บไซต์</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>การออกแบบ UX/UI</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>การเขียนโปรแกรมพื้นฐาน</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>เทคโนโลยีการศึกษา</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">โครงการ/ผลงาน</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-pink-50 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">ระบบจัดการเรียนรู้ออนไลน์</h4>
+                                <p class="text-sm text-gray-600">ออกแบบและพัฒนาระบบ LMS สำหรับมหาวิทยาลัย</p>
+                            </div>
+                            <div class="bg-pink-50 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">แอปพลิเคชันการศึกษาดิจิทัล</h4>
+                                <p class="text-sm text-gray-600">ออกแบบ UX/UI สำหรับแอปพลิเคชันการเรียนรู้สำหรับเด็ก</p>
+                            </div>
+                            <div class="bg-pink-50 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">โครงการวิจัยการศึกษา 4.0</h4>
+                                <p class="text-sm text-gray-600">วิจัยเกี่ยวกับการนำเทคโนโลยีมาใช้ในการศึกษา</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3 -->
+            <div class="section bg-white rounded-xl overflow-hidden shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">ช่องทางติดต่อ</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <a href="mailto:student@email.com" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fas fa-envelope text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">student@email.com</span>
+                        </a>
+                        
+                        <a href="tel:+66888888888" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fas fa-phone-alt text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">088-888-8888</span>
+                        </a>
+                        
+                        <a href="https://facebook.com" target="_blank" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fab fa-facebook-f text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">Facebook</span>
+                        </a>
+                        
+                        <a href="https://www.linkedin.com" target="_blank" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fab fa-linkedin-in text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">LinkedIn</span>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6 bg-gradient-to-r from-pink-100 to-pink-50 rounded-lg p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">ติดต่อคณะ</h3>
+                        <p class="text-gray-700 mb-4">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี<br>
+                        สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
+                        โทรศัพท์: 02-365-4987<br>
+                        อีเมล: fd@kmitl.ac.th</p>
+                        
+                        <a href="#" class="inline-block bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors">
+                            <i class="fas fa-globe mr-2"></i>เยี่ยมชมเว็บไซต์คณะ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page 2 -->
+    <div id="profile2" class="page">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <!-- Back Button -->
+            <button onclick="showPage('home')" class="mb-6 flex items-center text-pink-600 hover:text-pink-700">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span>กลับหน้าหลัก</span>
+            </button>
+            
+            <!-- Section 1 -->
+            <div class="section bg-white rounded-xl overflow-hidden shadow-md mb-8">
+                <div class="p-6">
+                    <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</h1>
+                    <h2 class="text-2xl text-center text-pink-600 mb-6">สาขานวัตกรรมและเทคโนโลยีการออกแบบ</h2>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-full md:w-1/2">
+                            <p class="text-gray-700 mb-4">สาขาวิชานี้มุ่งเน้นการพัฒนานักศึกษาให้มีทักษะในการออกแบบและพัฒนาเทคโนโลยีการศึกษา สามารถสร้างสรรค์นวัตกรรมการเรียนรู้ที่สอดคล้องกับความต้องการในยุคดิจิทัล</p>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>เรียนรู้ทั้งภาคทฤษฎีและปฏิบัติ</li>
+                                <li>อาจารย์ผู้ทรงคุณวุฒิและมีประสบการณ์</li>
+                                <li>สภาพแวดล้อมที่เอื้อต่อการเรียนรู้</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <img src="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2 -->
+            <div class="section bg-white rounded-xl overflow-hidden shadow-md mb-8">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">ข้อมูลเกี่ยวกับสาขาที่เพื่อนร่วมทีมเรียน</h2>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-full md:w-1/3">
+                            <div class="bg-gradient-to-br from-pink-200 to-pink-300 rounded-full p-2">
+                                <img src="https://cdn.discordapp.com/attachments/1385169743421636629/1385485028636754061/2CA6A05A-3E4E-4A28-AC69-E78A8657B839.jpg?ex=68563cfb&is=6854eb7b&hm=cabeeb95403bf6a9cc8deabef8883ecf9fd3cfd45f50763acb9ab532c29ecc0d&  " alt="Friend Photo" class="rounded-full w-full h-auto">
+                            </div>
+                        </div>
+                        
+                        <div class="w-full md:w-2/3">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">ประวัติส่วนตัว</h3>
+                            <p class="text-gray-700 mb-4">สวัสดีค่ะหนูเป็นนักศึกษาคณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี สาขานวัตกรรมและเทคโนโลยีการออกแบบ มีความสนใจในด้านการพัฒนาเกมการศึกษา, การออกแบบสื่อการเรียนรู้ดิจิทัล และการสร้างสรรค์นวัตกรรมสำหรับการศึกษา</p>
+                            
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">ความสามารถที่เชี่ยวชาญ</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>การพัฒนาเกมการศึกษา</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>การออกแบบกราฟิก</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>การผลิตสื่อดิจิทัล</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-pink-600 mr-2"></i>
+                                    <span>การเขียนโปรแกรมพื้นฐาน</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">โครงการ/ผลงาน</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-pink-50 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">เกมการเรียนรู้คณิตศาสตร์</h4>
+                                <p class="text-sm text-gray-600">ออกแบบและพัฒนาเกมเพื่อการเรียนรู้คณิตศาสตร์พื้นฐาน</p>
+                            </div>
+                            <div class="bg-pink-50 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">AR เพื่อการศึกษา</h4>
+                                <p class="text-sm text-gray-600">พัฒนาแอปพลิเคชัน AR สำหรับการเรียนรู้วิทยาศาสตร์</p>
+                            </div>
+                            <div class="bg-pink-50 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-800 mb-2">สื่อการเรียนรู้ดิจิทัล</h4>
+                                <p class="text-sm text-gray-600">ผลิตสื่อการเรียนรู้แบบอินเทอร์แอคทีฟสำหรับเด็ก</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3 -->
+            <div class="section bg-white rounded-xl overflow-hidden shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">ช่องทางติดต่อ</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <a href="mailto:friend@email.com" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fas fa-envelope text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">friend@kmitl.ac.th</span>
+                        </a>
+                        
+                        <a href="tel:+66999999999" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fas fa-phone-alt text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">01-234-5698</span>
+                        </a>
+                        
+                        <a href="https://facebook.com" target="_blank" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fab fa-facebook-f text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">Facebook</span>
+                        </a>
+                        
+                        <a href="https://www.instagram.com" target="_blank" class="bg-pink-50 rounded-lg p-4 flex flex-col items-center justify-center hover:bg-pink-100 transition-colors">
+                            <i class="fab fa-instagram text-pink-600 text-3xl mb-2"></i>
+                            <span class="text-gray-700">Instagram</span>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6 bg-gradient-to-r from-pink-100 to-pink-50 rounded-lg p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">ติดต่อคณะ</h3>
+                        <p class="text-gray-700 mb-4">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี<br>
+                        สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
+                        โทรศัพท์: 02-222-2222<br>
+                        อีเมล: edtech@university.ac.th</p>
+                        
+                        <a href="#" class="inline-block bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors">
+                            <i class="fas fa-globe mr-2"></i>เยี่ยมชมเว็บไซต์คณะ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to show specific page and hide others
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show requested page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.querySelector('.mobile-menu');
+            const button = document.querySelector('.mobile-menu-button');
+            
+            if (!menu.contains(event.target) && event.target !== button) {
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
